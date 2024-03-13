@@ -9,6 +9,9 @@ const { VITE_BARD_API_KEY } = import.meta.env;
 function App() {
   const [generatedText, setGeneratedText] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [skinTone, setSkinTone] = useState("");
+  const [hairColor, setHairColor] = useState("");
+  const [eyeColor, setEyeColor] = useState(""); // Think in adding validation to ensure that a valid color (HEX format) is provided
 
   const runColorAnalysis = async () => {
     setLoading(true);
@@ -16,8 +19,11 @@ function App() {
     try {
       const genAI = new GoogleGenerativeAI(VITE_BARD_API_KEY); // Enviroment Variable
       const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // Enviroment Variable
-      const prompt =
-        "If I have black hair and brown eyes which colors are more suitable for me?";
+
+      // Dynamic prompt based on user inputs
+      const prompt = `You are a professional color analyst consultant with 20+ years of experience. You will give your client insights 
+      about their seasonal color palette based on the HEX codes of their skin tone, hair color, and eye color:
+      \nSkin tone: ${skinTone}\nHair color: ${hairColor}\nEye color: ${eyeColor}`;
 
       // Generate content based on the prompt
       const result = await model.generateContent(prompt); // method (documentation Google AI) responsable for sending the prompt to the generative model and returning a result
@@ -35,10 +41,49 @@ function App() {
   return (
     <>
       <h1>Color Analysis</h1>
-      <div className="card">
+      <div className="input-container">
+        <label>
+          Skin Tone:
+          <div className="color-picker-container">
+            <div
+              className="selected-color"
+              style={{ backgroundColor: skinTone }}
+            ></div>
+            <button
+              onClick={() => document.getElementById("skinToneInput").click()}
+            >
+              Pick Color
+            </button>
+          </div>
+          <input
+            type="color"
+            id="skinToneInput" // As it is a color picker it will be useful to have in the same component an uploaded photo
+            value={skinTone}
+            onChange={(e) => setSkinTone(e.target.value)}
+            style={{ display: 'none' }}
+          />
+        </label>
+        <label>
+          Hair Color:
+          <input
+            type="color"
+            value={hairColor}
+            onChange={(e) => setHairColor(e.target.value)}
+          />
+        </label>
+        <label>
+          Eye Color:
+          <input
+            type="color"
+            value={eyeColor}
+            onChange={(e) => setEyeColor(e.target.value)}
+          />
+        </label>
         <button onClick={runColorAnalysis} disabled={loading}>
           {loading ? "Generating..." : "Generate Text"}
         </button>
+      </div>
+      <div className="answer-container">
         {generatedText !== null && <p>Generated Text: {generatedText}</p>}
       </div>
     </>
