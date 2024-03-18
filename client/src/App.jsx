@@ -4,6 +4,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+
 //Here is where my great project starts
 const { VITE_BARD_API_KEY } = import.meta.env;
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [skinTone, setSkinTone] = useState("");
   const [hairColor, setHairColor] = useState("");
   const [eyeColor, setEyeColor] = useState(""); // Think in adding validation to ensure that a valid color (HEX format) is provided
+  const [uploadedPhoto, setUploadedPhoto] = useState(null); // State for uploaded photo
 
   const runColorAnalysis = async () => {
     setLoading(true);
@@ -38,56 +40,118 @@ function App() {
     setLoading(false);
   };
 
+  // Component to upload the user's photo and then use the color picker
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    setUploadedPhoto(file);
+  };
+
+  const goBack = () => {
+    setGeneratedText(null);
+    setUploadedPhoto(null);
+  };
+
   return (
     <>
-      <h1>Color Analysis</h1>
-      <div className="input-container">
-        <label>
-          Skin Tone:
-          <div className="color-picker-container">
-            <div
-              className="selected-color"
-              style={{ backgroundColor: skinTone }}
-            ></div>
-            <button
-              onClick={() => document.getElementById("skinToneInput").click()}
-            >
-              Pick Color
-            </button>
+      {/* First Page */}
+      {!generatedText && (
+        <div className="container mt-5">
+          {/* Container 1: Upload Photo and Display */}
+          <div className="row">
+            <div className="col-md-6">
+              <h2>Upload Photo</h2>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+              />
+            </div>
+            <div className="col-md-6">
+            <h2>Uploaded Photo</h2>
+              {uploadedPhoto && (
+                <div className="uploaded-photo-container">
+                  <img
+                    src={URL.createObjectURL(uploadedPhoto)}
+                    alt="Uploaded"
+                    className="img-fluid"
+                    style={{ maxWidth: "300px", maxHeight: "300px" }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-          <input
-            type="color"
-            id="skinToneInput" // As it is a color picker it will be useful to have in the same component an uploaded photo
-            value={skinTone}
-            onChange={(e) => setSkinTone(e.target.value)}
-            style={{ display: 'none' }}
-          />
-        </label>
-        <label>
-          Hair Color:
-          <input
-            type="color"
-            value={hairColor}
-            onChange={(e) => setHairColor(e.target.value)}
-          />
-        </label>
-        <label>
-          Eye Color:
-          <input
-            type="color"
-            value={eyeColor}
-            onChange={(e) => setEyeColor(e.target.value)}
-          />
-        </label>
-        <button onClick={runColorAnalysis} disabled={loading}>
-          {loading ? "Generating..." : "Generate Text"}
-        </button>
-      </div>
-      <div className="answer-container">
-        {generatedText !== null && <p>Generated Text: {generatedText}</p>}
-      </div>
+
+          {/* Container 2: Color Pickers and Generate Text Button */}
+          <div className="row mt-5">
+            <div className="col-md-6">
+              <h2>Color Pickers</h2>
+              <label>
+                Skin Tone:
+                <input
+                  type="color"
+                  value={skinTone}
+                  onChange={(e) => setSkinTone(e.target.value)}
+                />
+              </label>
+              <label>
+                Hair Color:
+                <input
+                  type="color"
+                  value={hairColor}
+                  onChange={(e) => setHairColor(e.target.value)}
+                />
+              </label>
+              <label>
+                Eye Color:
+                <input
+                  type="color"
+                  value={eyeColor}
+                  onChange={(e) => setEyeColor(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="col-md-6">
+              <button
+                className="btn btn-primary"
+                onClick={runColorAnalysis}
+                disabled={loading}
+              >
+                {loading ? "Generating..." : "Get my color analysis"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Second Page */}
+      {generatedText && (
+        <div className="container mt-5">
+          <div className="row">
+            {/* Container 1: Uploaded Photo */}
+            <div className="col-md-6">
+              <h2>Your Photo</h2>
+              {uploadedPhoto && (
+                <img
+                  src={URL.createObjectURL(uploadedPhoto)}
+                  alt="Uploaded"
+                  className="img-fluid"
+                />
+              )}
+            </div>
+            {/* Container 2: Answer Container */}
+            <div className="col-md-6">
+              <h2>Your analysis:</h2>
+              <p>{generatedText}</p>
+              <button className="btn btn-primary" onClick={goBack}>
+                Go Back
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
+
 
 export default App;

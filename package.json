@@ -7,7 +7,9 @@
     "migrate": "node model/database.js"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.3.0",
     "bard-api-node": "^2.0.0",
+    "bootstrap": "^5.3.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
