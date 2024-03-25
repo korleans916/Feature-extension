@@ -1,130 +1,135 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* SETUP */
+
+/* Color Styles*/
+:root {
+  --primary: #FBC257;
+  --primary-light: #FCCC73;
+  --dark-brown: #341413;
+  --gray-1: #798092;
+  --gray-2: #E9E9ED;
+  --white: #FFFFFF;
+
+  /* Font Size Desktop*/
+  --header-1: 64px;
+  --header-2: 48px;
+  --header-3: 42px;
+  --header-4: 32px;
+
+  --text-medium: 18px;
+  --text-regular: 16px;
+  --text-light: 13px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Font Weight*/
+:root {
+  --font-weight-bold: 700;
+  --font-weight-semi-bold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* App.css */
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
 
-.input-container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-  margin-bottom: 20px;
+/* BUTTON PRIMARY */
+.btn {
+  padding: 15px 25px; 
+  border-radius: 6px;
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium);
 }
 
-.color-picker-container {
-  display: flex;
-  align-items: center;
-}
-
-.selected-color {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #ccc;
-  margin-right: 10px;
-}
-
-.answer-container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-}
-
-h1 {
-  color: #333;
-}
-
-button {
-  background-color: #4caf50;
-  color: #fff;
+.btn-primary {
+  background-color: var(--primary);
   border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
 }
 
-button:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
+.btn-primary:focus {
+  background-color: var(--primary-light);
 }
 
-p {
-  margin-top: 20px;
-  margin-bottom: 30px;
-  color: #555;
+.btn-primary:hover {
+  background-color: var(--primary-light);
+} 
+
+
+/* BUTTON SECONDARY */
+
+.btn-secondary {
+  background-color: var(--gray-2);
+  color: var(--gray-1);
 }
 
-label {
-  display: block;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
+.btn-secondary:focus {
+  background-color: var(--white); 
+  box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.05) !important;
+  color: var(--gray-1);
 }
 
-input[type="color"] {
-  margin-top: 5px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.btn-secondary:hover {
+  background-color: var(--white) !important;
+  box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.05) !important;
+  color: var(--gray-1);
 }
 
-input[type="color"]:focus {
-  outline: none;
+/* NAVBAR */
+
+.navbar-brand img {
+  padding-right: 16px;
+}
+
+.navbar-brand span {
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--dark-brown);
+}
+
+.navbar {
+  padding: 48px 0;
+}
+
+a.nav-link {
+  margin-right: 39px; 
+  font-size: var(--text-regular);
+  font-weight: var(--font-weight-regular);
+  color: var(--dark-brown) !important;
+}
+
+/* HERO */
+
+section.hero {
+  margin: 5rem 0;
+}
+
+.text-label,
+.text-hero-bold,
+.text-hero-regular {
+  margin: 24px 0;
+}
+
+.text-label {
+  color: var(--primary);
+  font-size: var(--text-regular);
+  font-weight: var(--font-weight-regular);
+  line-height: 31px;
+}
+
+.text-hero-bold {
+  color: var(--dark-brown);
+  font-size: var(--header-1); 
+  font-weight: var(--font-weight-bold);
+  line-height: 74px;
+}
+
+.text-hero-regular {
+  color: var(--gray-1);
+  font-size: var(--text-regular);
+  font-weight: var(--font-weight-regular);
+  line-height: 31px;
 }
