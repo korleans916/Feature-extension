@@ -9,17 +9,17 @@ export default function Hero() {
           <div class="col-md-6">
             <div class="copy">
               <div class="text-label">
-                Your text here
+              Seeking effortless style improvement? Glow up in 3 simple steps!
               </div>
               <div class="text-hero-bold">
-                Grow Up Your Mind In the future.
+              Maximize Your Style Potential with Color Precision.
               </div>
               <div class="text-hero-regular">
-                There are so many variations passages of management Your mindset about bussines in your company or agency
+              Let our AI analyze your facial colors and recommend the perfect wardrobe palette for you.
               </div>
               <div class="cta">
-                <a href="#" class="btn btn-primary shadow-none">Explore now</a>
-                <a href="#" class="btn btn-secondary shadow-none ms-3">Explore now</a>
+                <a href="#" class="btn btn-primary shadow-none">Try it now!</a>
+                <a href="#" class="btn btn-secondary shadow-none ms-3">More info</a>
               </div>
             </div>
           </div>

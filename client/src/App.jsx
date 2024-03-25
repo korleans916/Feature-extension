@@ -65,7 +65,7 @@ function App() {
           {/* Container 1: Upload Photo and Display */}
           <div className="row">
             <div className="col-md-6">
-              <h2>Upload Photo</h2>
+              <h2>1. Upload your photo</h2>
               <input type="file" accept="image/*" onChange={handleFileUpload} />
             </div>
             <div className="col-md-6">
@@ -86,7 +86,7 @@ function App() {
           {/* Container 2: Color Pickers and Generate Text Button */}
           <div className="row mt-5">
             <div className="col-md-6">
-              <h2>Color Pickers</h2>
+              <h2>2. Pick your colors</h2>
               <label>
                 Skin Tone:
                 <input
