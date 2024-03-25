@@ -1,7 +1,7 @@
 import React from "react";
 import heroBackground from "../img/illustration.png";
 
-export default function Navbar() {
+export default function Hero() {
   return (
     <section className="hero">
       <div class="container">
