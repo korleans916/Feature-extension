@@ -5,7 +5,7 @@ import Navbar from "./assets/components/Navbar";
 import Hero from "./assets/components/Hero";
 
 //Here is where my great project starts
-const { VITE_BARD_API_KEY } = import.meta.env;
+const { GLIMMER_API_KEY } = import.meta.env;
 function App() {
   const [generatedText, setGeneratedText] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ function App() {
     setLoading(true);
 
     try {
-      const genAI = new GoogleGenerativeAI(VITE_BARD_API_KEY); // Enviroment Variable
+      const genAI = new GoogleGenerativeAI(GLIMMER_API_KEY); // Enviroment Variable
       const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // Enviroment Variable
 
       // Dynamic prompt based on user inputs
