@@ -3,9 +3,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./App.css";
 import Navbar from "./assets/components/Navbar";
 import Hero from "./assets/components/Hero";
+import LoginModal from "./assets/components/LoginModal";
 
 //Here is where my great project starts
-const { GLIMMER_API_KEY } = import.meta.env;
+// const { VITE_BARD_API_KEY } = import.meta.env;
+const VITE_BARD_API_KEY = "AIzaSyAxLcGOVqcpZawWCgOcA7o84ag3KmRhXDU";
+
 function App() {
   const [generatedText, setGeneratedText] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -16,9 +19,9 @@ function App() {
 
   const runColorAnalysis = async () => {
     setLoading(true);
-
+    console.log(VITE_BARD_API_KEY);
     try {
-      const genAI = new GoogleGenerativeAI(GLIMMER_API_KEY); // Enviroment Variable
+      const genAI = new GoogleGenerativeAI(VITE_BARD_API_KEY); // Enviroment Variable
       const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // Enviroment Variable
 
       // Dynamic prompt based on user inputs
@@ -58,6 +61,8 @@ function App() {
       <Navbar/> 
       {/* Hero Section */}
       <Hero/> 
+      {/*Login Section */}
+      <LoginModal/>
 
       {/* First Page */}
       {!generatedText && (
