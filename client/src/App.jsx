@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./App.css";
 import Navbar from "./assets/components/Navbar";
 import Hero from "./assets/components/Hero";
-import LoginModal from "./assets/components/LoginModal";
+import LoginModal from "./assets/components/Login";
 
 //Here is where my great project starts
 // const { VITE_BARD_API_KEY } = import.meta.env;
@@ -61,8 +61,6 @@ function App() {
       <Navbar/> 
       {/* Hero Section */}
       <Hero/> 
-      {/*Login Section */}
-      <LoginModal/>
 
       {/* First Page */}
       {!generatedText && (

@@ -3,8 +3,8 @@ import axios from "axios";
 
 function Login() {
   const [credentials, setCredentials] = useState({
-    username: "test",
-    password: "test",
+    username: "username",
+    password: "password",
   });
 
   const [data, setData] = useState(null);
@@ -37,21 +37,6 @@ function Login() {
     localStorage.removeItem("token");
   };
 
-  const requestData = async () => {
-    try {
-      const { data } = await axios("/api/auth/profile", {
-        headers: {
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
-      setData(data.message);
-      console.log(data.message);
-    } catch (error) {
-      console.log(error);
-      setData(error.message);
-    }
-  };
-
   return (
     <div>
       <div>
@@ -77,11 +62,6 @@ function Login() {
             Log out
           </button>
         </div>
-      </div>
-      <div className="text-center p-4">
-        <button className=" btn btn-outline-primary" onClick={requestData}>
-          Request protected data
-        </button>
       </div>
 
       {data && (
