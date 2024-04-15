@@ -9,6 +9,7 @@ const saltRounds = 10;
 
 const supersecret = process.env.SUPER_SECRET;
 
+// POST endpoint to add and store user info
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
@@ -25,6 +26,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// POST endpoint to post login information
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -41,19 +43,13 @@ router.post("/login", async (req, res) => {
       if (!correctPassword) throw new Error("Incorrect password");
 
       var token = jwt.sign({ user_id }, supersecret);
-      res.send({ message: "Login successful, here is your token", token });
+      res.send({ message: `Hello, ${username}`, token });
     } else {
       throw new Error("User does not exist");
     }
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
-});
-
-router.get("/profile", userLoggedIn, (req, res) => {
-  res.send({
-    message: "Here is the PROTECTED data for user " + req.user_id,
-  });
 });
 
 module.exports = router;

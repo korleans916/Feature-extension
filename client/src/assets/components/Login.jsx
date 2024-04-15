@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function Login() {
+
   const [credentials, setCredentials] = useState({
     username: "username",
     password: "password",
@@ -33,20 +34,17 @@ function Login() {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-  };
-
   return (
-    <div>
-      <div>
+    <>
+    <div className="row gx-5">
+      <div className="col col-md-3 offset-md-5">
         <input
           value={username}
           onChange={handleChange}
           name="username"
           type="text"
           className="form-control mb-2"
-        />
+        /> 
         <input
           value={password}
           onChange={handleChange}
@@ -54,14 +52,8 @@ function Login() {
           type="password"
           className="form-control mb-2"
         />
-        <div className="d-flex gap-2 justify-content-center">
-          <button className="btn btn-primary" onClick={login}>
-            Log in
-          </button>
-          <button className="btn btn-outline-dark ml-2" onClick={logout}>
-            Log out
-          </button>
-        </div>
+        <button type="button" class="btn btn-primary" onClick={login}>Submit</button>
+      </div>
       </div>
 
       {data && (
@@ -69,7 +61,7 @@ function Login() {
           <div className="alert">{data}</div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
